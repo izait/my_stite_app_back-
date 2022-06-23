@@ -2,12 +2,9 @@
 
 namespace App\Controller;
 
-use App\BasicFactory;
-use App\BasicWorker;
 use App\Entity\Cities;
 use App\Entity\Streets;
 use App\Entity\Users;
-use App\RedWorker;
 use App\Repository\UsersRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -38,12 +35,14 @@ class ListCitiesStreetsController extends AbstractController
         $userLogin = $this->user->getName();
         if(in_array("ROLE_ADMIN",$userRoles)){
             return $this->json([
-                'message' => "Hello Admin $userLogin"
+                'message' => "Hello Admin $userLogin",
+                'login' => $userLogin
             ]);
 
         }else{
             return $this->json([
-                'message' => "Hello User $userLogin"
+                'message' => "Hello User $userLogin",
+                'login' => $userLogin
             ]);
         }
 

@@ -9,7 +9,8 @@ use Symfony\Component\Security\Core\User\UserInterface;
  * Users
  *
  * @ORM\Table(name="users")
- * @ORM\Entity(repositoryClass="App\Repository\UsersRepository")
+ * @ORM\Entity
+ * @method string getUserIdentifier()
  */
 class Users implements UserInterface
 {
@@ -43,11 +44,19 @@ class Users implements UserInterface
      */
     private $token;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="role", type="string", length=45, nullable=false)
+     */
+    private $role;
 
     /**
-    * @ORM\Column(name="role", type="string", length=250, nullable=false)
-    */
-    private $role;
+     * @var string
+     *
+     * @ORM\Column(name="pass", type="string", length=45, nullable=false)
+     */
+    private $pass;
 
     public function getId(): ?int
     {
@@ -90,11 +99,13 @@ class Users implements UserInterface
         return $this;
     }
 
-    public function getRole():string{
+    public function getRole(): ?string
+    {
         return $this->role;
     }
 
-    public function setRole(string $role):self{
+    public function setRole(string $role): self
+    {
         $this->role = $role;
 
         return $this;
@@ -103,10 +114,7 @@ class Users implements UserInterface
 
     public function getRoles()
     {
-        $defaultRoles = ['ROLE_USER'];
-        $customRoles = [$this->getRole()];
-
-        return array_merge($defaultRoles,$customRoles);
+        return ['ROLE_USER'];
     }
 
     public function getPassword()
@@ -116,7 +124,7 @@ class Users implements UserInterface
 
     public function getSalt()
     {
-        return md5(random_bytes(16));
+        return null;
     }
 
     public function eraseCredentials()
@@ -131,4 +139,22 @@ class Users implements UserInterface
     public function __call($name, $arguments)
     {
     }
+
+    /**
+     * @return string
+     */
+    public function getPass(): string
+    {
+        return $this->pass;
+    }
+
+    /**
+     * @param string $pass
+     */
+    public function setPass(string $pass): self
+    {
+        $this->pass = $pass;
+        return $this;
+    }
+
 }

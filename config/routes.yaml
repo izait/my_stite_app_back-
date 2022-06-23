@@ -3,11 +3,82 @@ login:
     methods: GET
     controller: App\Controller\ListCitiesStreetsController::index
 
-#logout:
-#  path: /logout
-#  controller: App\Controller\DefaultController::index
-#
-#cities:
-#  path: /get_cities
-#  controller: App\Controller\DefaultController::index
-#
+street_add:
+    path: /street_add
+    methods: GET
+    controller: App\Controller\StreetsController::addStreet
+
+street_rename:
+    path: /street_rename
+    methods: GET
+    controller: App\Controller\StreetsController::renameStreet
+
+street_delete:
+    path: /street_delete
+    methods: GET
+    controller: App\Controller\StreetsController::deleteStreet
+
+street_find:
+    path: /street_find
+    methods: GET
+    controller: App\Controller\StreetsController::findStreet
+
+user_add:
+    path: /user_add
+    methods: GET
+    controller: App\Controller\UserController::addUser
+
+user_rename:
+    path: /user_rename
+    methods: GET
+    controller: App\Controller\UserController::renameUser
+
+user_find:
+    path: /user_find
+    methods: GET
+    controller: App\Controller\UserController::findUser
+
+user_delete:
+    path: /user_delete
+    methods: GET
+    controller: App\Controller\UserController::deleteUser
+
+city_add:
+    path: /city_add
+    methods: GET
+    controller: App\Controller\CityController::addCity
+
+city_rename:
+    path: /city_rename
+    methods: GET
+    controller: App\Controller\CityController::renameCity
+
+city_delete:
+    path: /city_delete
+    methods: GET
+    controller: App\Controller\CityController::deleteCity
+
+city_find:
+    path: /city_find
+    methods: GET
+    controller: App\Controller\CityController::findCity
+
+user_addresses_delete:
+    path: /user_addresses_delete
+    methods: GET
+    controller: App\Controller\UsersAddressesController::delete
+
+user_addresses_bind:
+    path: /user_addresses_bind
+    methods: GET
+    controller: App\Controller\UsersAddressesController::bind
+
+user_addresses_replace:
+    path: /user_addresses_replace
+    methods: GET
+    controller: App\Controller\UsersAddressesController::replace
+
+auth:
+    path: /auth
+    methods: GET
+    controller: App\Controller\AuthController::check

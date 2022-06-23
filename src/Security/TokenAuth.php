@@ -57,9 +57,10 @@ class TokenAuth extends AbstractAuthenticator
 
     public function onAuthenticationFailure(Request $request, AuthenticationException $exception): ?Response
     {
+
         return new JsonResponse([
             'message' => $exception->getMessage()
-        ]);
+        ],Response::HTTP_UNAUTHORIZED);
 
     }
 }

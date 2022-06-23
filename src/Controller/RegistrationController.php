@@ -15,13 +15,10 @@ use Symfony\Component\HttpKernel\HttpKernel;
 
 class RegistrationController extends AbstractController
 {
-    public function supports(Request $request): ?bool
-    {
-        return true;
-    }
     private $entityManager;
 
-    public function __construct(EntityManagerInterface $entityManager){
+    public function __construct(EntityManagerInterface $entityManager)
+    {
         $this->entityManager = $entityManager;
     }
 
@@ -31,6 +28,7 @@ class RegistrationController extends AbstractController
     public function  registration(Request $request){
         $headerName = "reg";
         $userReg = $request->headers->get($headerName);
+
         $userName = $request->query->get('Name');
         $userAge =  $request->query->get('Age');
         if ($userReg=== NULL){
@@ -56,13 +54,5 @@ class RegistrationController extends AbstractController
                 'user name' => $userName
             ]);
         }
-    }
-
-    public function index(): JsonResponse
-    {
-        return $this->json([
-            'message' => 'Welcome to your new controller!',
-            'path' => 'src/Controller/RegistrationController.php',
-        ]);
     }
 }
